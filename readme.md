@@ -2,6 +2,11 @@
 
 Spring Boot REST API for user management, financial records, authentication, and dashboard analytics.
 
+
+## API Docs
+https://app.swaggerhub.com/apis/na-f19/zorvyn_api/1.0.0-oas3.1
+
+
 ### Tech Stack
 
 - Java 21
