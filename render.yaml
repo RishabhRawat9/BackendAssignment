@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: your-api-name
+    runtime: java
+    region: oregon  # or frankfurt, singapore
+    plan: free      # explicitly free tier
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "java -jar target/your-app-name-0.0.1-SNAPSHOT.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: your-db-name
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: your-db-name
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: your-db-name
+          property: password
+      - key: JWT_SECRET
+        generateValue: true  # Auto-generates random string
+      - key: SERVER_PORT
+        value: 10000  # Render uses 10000, not 8080
+
+databases:
+  - name: your-db-name
+    databaseName: your_db
+    user: your_user
+    plan: free      # 1GB storage, expires after 90 days idle
